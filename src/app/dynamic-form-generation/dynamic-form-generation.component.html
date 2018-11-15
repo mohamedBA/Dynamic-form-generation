@@ -1,0 +1,40 @@
+<
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <ng-container *ngFor="let field of fields">
+    <div class="form-group">
+      <label [ngClass]="labelClasses">{{ field?.label }}</label>
+      <ng-container [ngSwitch]="field?.type">
+        <input
+          *ngSwitchCase="'input'"
+          [value]="field.defaultValue"
+          [type]="field.inputType"
+          [formControlName]="field.formControlName"
+          [name]="field.formControlName"
+          class="form-control"
+          [ngClass]="inputClasses"
+        />
+        <select
+          *ngSwitchCase="'select'"
+          [value]="field.defaultValue"
+          [formControlName]="field.formControlName"
+          [name]="field.formControlName"
+          class="form-control"
+          [ngClass]="inputClasses"
+        >
+          <option *ngFor="let option of field.options" [value]="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+        <textarea
+          *ngSwitchCase="'textarea'"
+          [value]="field.defaultValue"
+          [formControlName]="field.formControlName"
+          [name]="field.formControlName"
+          class="form-control"
+          [ngClass]="inputClasses"
+        >
+        </textarea>
+      </ng-container>
+    </div>
+  </ng-container>
+</form>
