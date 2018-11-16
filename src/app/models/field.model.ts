@@ -13,6 +13,7 @@ export interface FieldConfig {
   defaultValue?: any;
   inputClasses?: string[] | string;
   labelClasses?: string[] | string;
+  list?: boolean;
   validations?: Validator[];
 }
 export interface Form {

@@ -23,8 +23,16 @@ export class AppComponent {
       defaultValue: 25
     },
     {
+      label: "Hobbies",
+      formControlName: "hobbie",
+      inputType: "text",
+      type: "input",
+      list: true,
+      defaultValue: ["azz", "aaa"]
+    },
+    {
       label: "Name",
-      formControlName: "name",
+      formControlName: "birthday",
       inputType: "text",
       options: [
         { text: "1992", value: "1992" },

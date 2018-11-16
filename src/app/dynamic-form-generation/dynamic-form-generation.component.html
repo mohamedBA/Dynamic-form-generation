@@ -1,11 +1,11 @@
-<
+<div class="container"></div>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <ng-container *ngFor="let field of fields">
     <div class="form-group">
       <label [ngClass]="labelClasses">{{ field?.label }}</label>
-      <ng-container [ngSwitch]="field?.type">
+      <ng-container *ngIf="!field.list">
         <input
-          *ngSwitchCase="'input'"
+          *ngIf="field.type == 'input'"
           [value]="field.defaultValue"
           [type]="field.inputType"
           [formControlName]="field.formControlName"
@@ -14,19 +14,19 @@
           [ngClass]="inputClasses"
         />
         <select
-          *ngSwitchCase="'select'"
+          *ngIf="field.type == 'select'"
           [value]="field.defaultValue"
           [formControlName]="field.formControlName"
           [name]="field.formControlName"
           class="form-control"
           [ngClass]="inputClasses"
         >
-          <option *ngFor="let option of field.options" [value]="option.value">
+          <option *ngFor="let option of field.options" [ngValue]="option.value">
             {{ option.text }}
           </option>
         </select>
         <textarea
-          *ngSwitchCase="'textarea'"
+          *ngIf="field.type == 'textarea'"
           [value]="field.defaultValue"
           [formControlName]="field.formControlName"
           [name]="field.formControlName"
@@ -35,6 +35,37 @@
         >
         </textarea>
       </ng-container>
+      <ng-container *ngIf="field.list">
+        <div [formArrayName]="field.formControlName">
+          <ng-container
+            *ngFor="
+              let control of registerForm.controls[field.formControlName];
+              let i = index
+            "
+          >
+          {{i}}
+            <input
+              *ngIf="field.type == 'input'"
+              [value]="field.defaultValue"
+              [type]="field.inputType"
+              [formControlName]="i"
+              [name]="field.formControlName"
+              class="form-control"
+              [ngClass]="inputClasses"
+            /><span
+              *ngIf="i == 0"
+              class="glyphicon glyphicon-plus"
+              (click)="add()"
+            ></span>
+            <span
+              *ngIf="i !== 0"
+              class="glyphicon glyphicon-minus"
+              (click)="remove()"
+            ></span>
+          </ng-container>
+        </div>
+      </ng-container>
     </div>
   </ng-container>
+  <button type="submit" class="btn btn-success pull-right">Submit</button>
 </form>
