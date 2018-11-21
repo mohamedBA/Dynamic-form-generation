@@ -19,7 +19,7 @@ export class DynamicFormGenerationComponent implements OnInit {
         if (element.defaultValue) {
           const groupArray: any[] = [];
           element.defaultValue.forEach((value, index) => {
-            groupArray.push({ index: new FormControl(value) });
+            groupArray.push(new FormControl(value));
           });
           group[element.formControlName] = this.formBuilder.array(groupArray);
         } else {
@@ -32,6 +32,18 @@ export class DynamicFormGenerationComponent implements OnInit {
       }
     });
     this.registerForm = new FormGroup(group);
+  }
+  public add(formControlNamePath: string) {
+    const formArray: FormArray = <FormArray>(
+      this.registerForm.get(formControlNamePath)
+    );
+    formArray.push(new FormControl(""));
+  }
+  public remove(index: number, formControlNamePath: string) {
+    const formArray: FormArray = <FormArray>(
+      this.registerForm.get(formControlNamePath)
+    );
+    formArray.removeAt(index);
   }
   public onSubmit(event: any) {
     console.log(this.registerForm.value);
