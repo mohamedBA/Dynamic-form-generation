@@ -16,6 +16,13 @@ export class AppComponent {
       defaultValue: "Mohamed"
     },
     {
+      label: "Date",
+      formControlName: "birthday",
+      inputType: "date",
+      type: "input",
+      defaultValue: "2018-11-15"
+    },
+    {
       label: "Old",
       formControlName: "old",
       inputType: "number",
@@ -31,16 +38,15 @@ export class AppComponent {
       defaultValue: ["azz", "aaa"]
     },
     {
-      label: "Name",
-      formControlName: "birthday",
+      label: "Nationality",
+      formControlName: "nationality",
       inputType: "text",
       options: [
-        { text: "1992", value: "1992" },
-        { text: "1993", value: "1993" },
-        { text: "1994", value: "1994" }
+        { text: "tn", value: "TUN" },
+        { text: "fr", value: "FR" },
+        { text: "usa", value: "USA" }
       ],
-      type: "select",
-      defaultValue: "Mohamed"
+      type: "select"
     }
   ];
 }

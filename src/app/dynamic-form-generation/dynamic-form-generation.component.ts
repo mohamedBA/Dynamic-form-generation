@@ -37,7 +37,7 @@ export class DynamicFormGenerationComponent implements OnInit {
     const formArray: FormArray = <FormArray>(
       this.registerForm.get(formControlNamePath)
     );
-    formArray.push(new FormControl(""));
+    formArray.push(new FormControl(" "));
   }
   public remove(index: number, formControlNamePath: string) {
     const formArray: FormArray = <FormArray>(

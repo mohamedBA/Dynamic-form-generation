@@ -37,27 +37,40 @@
       </ng-container>
       <ng-container *ngIf="field.list">
         <div [formArrayName]="field.formControlName">
-          <div class="row" *ngFor="let control of registerForm.get(field.formControlName).controls;
-              let i = index">
-              <div class="col-md-9 pb-1">
-                  <input
-                  *ngIf="field.type == 'input'"
-                  [value]="field.defaultValue[i]"
-                  [type]="field.inputType"
-                  [formControlName]="i"
-                  [name]="field.formControlName"
-                  class="form-control"
-                  [ngClass]="inputClasses"
-                />
-              </div>
-              <div class="col-md-2">
-                  <button class="btn" *ngIf="i == 0" (click)="add(field.formControlName)">
-                      <i class="glyphicon glyphicon-plus">add</i>
-                    </button>
-                    <button class="btn" *ngIf="i !== 0" (click)="remove(i,field.formControlName)">
-                      <i class="glyphicon glyphicon-minus">remove</i>
-                    </button>
-              </div>            
+          <div
+            class="row"
+            *ngFor="
+              let control of registerForm.get(field.formControlName).controls;
+              let i = index
+            "
+          >
+            <div class="col-md-9 pb-1">
+              <input
+                *ngIf="field.type == 'input'"
+                [value]="field.defaultValue[i] ? field.defaultValue[i] : ''"
+                [type]="field.inputType"
+                [formControlName]="i"
+                [name]="field.formControlName"
+                class="form-control"
+                [ngClass]="inputClasses"
+              />
+            </div>
+            <div class="col-md-2">
+              <button
+                class="btn"
+                *ngIf="i == 0"
+                (click)="add(field.formControlName)"
+              >
+                <i class="glyphicon glyphicon-plus">add</i>
+              </button>
+              <button
+                class="btn"
+                *ngIf="i !== 0"
+                (click)="remove(i, field.formControlName)"
+              >
+                <i class="glyphicon glyphicon-minus">remove</i>
+              </button>
+            </div>
           </div>
         </div>
       </ng-container>
