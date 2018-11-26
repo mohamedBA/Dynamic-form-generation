@@ -9,6 +9,7 @@
 # dependencies
 /node_modules
 
+
 # IDEs and editors
 /.idea
 .project
@@ -33,6 +34,7 @@
 npm-debug.log
 yarn-error.log
 testem.log
+package-lock.json
 /typings
 
 # e2e
@@ -42,3 +44,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+# histories
+/.history

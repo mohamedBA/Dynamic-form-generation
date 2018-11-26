@@ -13,6 +13,16 @@
           class="form-control"
           [ngClass]="inputClasses"
         />
+        <input
+          *ngIf="field.type == 'input'&& field.inputType=='file'"
+          (change)="uploadFile($event)"
+          [value]="field.defaultValue"
+          [type]="field.inputType"
+          [formControlName]="field.formControlName"
+          [name]="field.formControlName"
+          class="form-control"
+          [ngClass]="inputClasses"
+        />
         <select
           *ngIf="field.type == 'select'"
           [value]="field.defaultValue"
